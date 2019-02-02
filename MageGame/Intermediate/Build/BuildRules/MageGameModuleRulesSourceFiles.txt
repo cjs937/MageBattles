@@ -1,0 +1,3 @@
+C:\Users\cory.smith\Documents\Cory_Repos\Console\MageBattles\MageGame\Source\MageGame\MageGame.Build.cs
+C:\Users\cory.smith\Documents\Cory_Repos\Console\MageBattles\MageGame\Source\MageGame.Target.cs
+C:\Users\cory.smith\Documents\Cory_Repos\Console\MageBattles\MageGame\Source\MageGameEditor.Target.cs
