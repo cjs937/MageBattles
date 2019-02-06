@@ -69,7 +69,7 @@ void EmptyLinkFunctionForGeneratedCodeMageGameGameModeBase() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AMageGameGameModeBase, 3853276601);
+	IMPLEMENT_CLASS(AMageGameGameModeBase, 3517182614);
 	static FCompiledInDefer Z_CompiledInDefer_UClass_AMageGameGameModeBase(Z_Construct_UClass_AMageGameGameModeBase, &AMageGameGameModeBase::StaticClass, TEXT("/Script/MageGame"), TEXT("AMageGameGameModeBase"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AMageGameGameModeBase);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

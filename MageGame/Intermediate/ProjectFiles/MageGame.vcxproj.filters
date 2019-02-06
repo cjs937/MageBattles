@@ -1,46 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<ItemGroup>
-		<None Include="..\..\MageGame.uproject" />
-		<Filter Include="Source">
-			<UniqueIdentifier>{AE3D46FF-2FB8-4EE5-80E8-97E42617085D}</UniqueIdentifier>
-		</Filter>
-		<None Include="..\..\Source\MageGame.Target.cs">
-			<Filter>Source</Filter>
-		</None >
-		<None Include="..\..\Source\MageGameEditor.Target.cs">
-			<Filter>Source</Filter>
-		</None >
-		<Filter Include="Config">
-			<UniqueIdentifier>{F2C35EF8-22D8-477B-B17A-74E53FCB81A0}</UniqueIdentifier>
-		</Filter>
-		<None Include="..\..\Config\DefaultEditor.ini">
-			<Filter>Config</Filter>
-		</None >
-		<None Include="..\..\Config\DefaultEngine.ini">
-			<Filter>Config</Filter>
-		</None >
-		<None Include="..\..\Config\DefaultGame.ini">
-			<Filter>Config</Filter>
-		</None >
-		<Filter Include="Source\MageGame">
-			<UniqueIdentifier>{C84099E3-0BB1-4DBA-BB29-9096713B14BC}</UniqueIdentifier>
-		</Filter>
-		<None Include="..\..\Source\MageGame\MageGame.Build.cs">
-			<Filter>Source\MageGame</Filter>
-		</None >
-		<ClCompile Include="..\..\Source\MageGame\MageGame.cpp">
-			<Filter>Source\MageGame</Filter>
-		</ClCompile >
-		<ClInclude Include="..\..\Source\MageGame\MageGame.h">
-			<Filter>Source\MageGame</Filter>
-		</ClInclude >
-		<ClCompile Include="..\..\Source\MageGame\MageGameGameModeBase.cpp">
-			<Filter>Source\MageGame</Filter>
-		</ClCompile >
-		<ClInclude Include="..\..\Source\MageGame\MageGameGameModeBase.h">
-			<Filter>Source\MageGame</Filter>
-		</ClInclude >
-	</ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\MageGame.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{E5C426A4-5548-4A32-ACEE-7F74EFF8E893}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\MageGame.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\MageGameEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{1B63BCDF-1C86-4B36-8D5D-CA799A988BAF}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\MageGame">
+      <UniqueIdentifier>{CC0EF112-7ACF-46C2-8650-7B11027AAF48}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\MageGame\MageGame.Build.cs">
+      <Filter>Source\MageGame</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\MageGame\MageGame.cpp">
+      <Filter>Source\MageGame</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\MageGame\MageGame.h">
+      <Filter>Source\MageGame</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\MageGame\MageGameGameModeBase.cpp">
+      <Filter>Source\MageGame</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\MageGame\MageGameGameModeBase.h">
+      <Filter>Source\MageGame</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>
