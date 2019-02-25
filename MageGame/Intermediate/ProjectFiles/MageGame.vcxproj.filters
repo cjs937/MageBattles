@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\MageGame.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{E5C426A4-5548-4A32-ACEE-7F74EFF8E893}</UniqueIdentifier>
+      <UniqueIdentifier>{37B93E5A-6845-4010-BEE7-69FEEE875B90}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\MageGame.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{1B63BCDF-1C86-4B36-8D5D-CA799A988BAF}</UniqueIdentifier>
+      <UniqueIdentifier>{6426BA94-375C-4ECC-AF5B-31E1531F33BF}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -24,8 +24,14 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\MageGame">
-      <UniqueIdentifier>{CC0EF112-7ACF-46C2-8650-7B11027AAF48}</UniqueIdentifier>
+      <UniqueIdentifier>{FCC38EEE-BA16-445D-BBD4-E2FF34D370EC}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\MageGame\AbilityScript.cpp">
+      <Filter>Source\MageGame</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\MageGame\AbilityScript.h">
+      <Filter>Source\MageGame</Filter>
+    </ClInclude>
     <None Include="..\..\Source\MageGame\MageGame.Build.cs">
       <Filter>Source\MageGame</Filter>
     </None>
@@ -39,6 +45,11 @@
       <Filter>Source\MageGame</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\MageGame\MageGameGameModeBase.h">
+      <Filter>Source\MageGame</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\MageGame\VMValue.h">
       <Filter>Source\MageGame</Filter>
     </ClInclude>
   </ItemGroup>
