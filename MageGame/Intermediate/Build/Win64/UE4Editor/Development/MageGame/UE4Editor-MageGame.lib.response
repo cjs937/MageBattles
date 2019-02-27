@@ -7,8 +7,10 @@
 /IGNORE:4221
 /NODEFAULTLIB
 "C:\Users\cory.smith\Documents\Cory_Repos\Console\MageBattles\MageGame\Intermediate\Build\Win64\MageGameEditor\Development\Engine\SharedPCH.Engine.h.obj"
+"C:\Users\cory.smith\Documents\Cory_Repos\Console\MageBattles\MageGame\Intermediate\Build\Win64\UE4Editor\Development\MageGame\AbilityScript.cpp.obj"
 "C:\Users\cory.smith\Documents\Cory_Repos\Console\MageBattles\MageGame\Intermediate\Build\Win64\UE4Editor\Development\MageGame\MageGame.cpp.obj"
 "C:\Users\cory.smith\Documents\Cory_Repos\Console\MageBattles\MageGame\Intermediate\Build\Win64\UE4Editor\Development\MageGame\MageGameGameModeBase.cpp.obj"
+"C:\Users\cory.smith\Documents\Cory_Repos\Console\MageBattles\MageGame\Intermediate\Build\Win64\UE4Editor\Development\MageGame\AbilityScript.gen.cpp.obj"
 "C:\Users\cory.smith\Documents\Cory_Repos\Console\MageBattles\MageGame\Intermediate\Build\Win64\UE4Editor\Development\MageGame\MageGame.init.gen.cpp.obj"
 "C:\Users\cory.smith\Documents\Cory_Repos\Console\MageBattles\MageGame\Intermediate\Build\Win64\UE4Editor\Development\MageGame\MageGameGameModeBase.gen.cpp.obj"
 "C:\Users\cory.smith\Documents\Cory_Repos\Console\MageBattles\MageGame\Intermediate\Build\Win64\UE4Editor\Development\MageGame\PCLaunch.rc.res"

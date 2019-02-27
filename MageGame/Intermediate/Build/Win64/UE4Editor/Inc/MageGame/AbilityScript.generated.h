@@ -13,9 +13,9 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define MAGEGAME_AbilityScript_generated_h
 
-#define MageGame_Source_MageGame_AbilityScript_h_13_RPC_WRAPPERS
-#define MageGame_Source_MageGame_AbilityScript_h_13_RPC_WRAPPERS_NO_PURE_DECLS
-#define MageGame_Source_MageGame_AbilityScript_h_13_INCLASS_NO_PURE_DECLS \
+#define MageGame_Source_MageGame_AbilityScript_h_15_RPC_WRAPPERS
+#define MageGame_Source_MageGame_AbilityScript_h_15_RPC_WRAPPERS_NO_PURE_DECLS
+#define MageGame_Source_MageGame_AbilityScript_h_15_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAAbilityScript(); \
 	friend struct Z_Construct_UClass_AAbilityScript_Statics; \
@@ -24,7 +24,7 @@ public: \
 	DECLARE_SERIALIZER(AAbilityScript)
 
 
-#define MageGame_Source_MageGame_AbilityScript_h_13_INCLASS \
+#define MageGame_Source_MageGame_AbilityScript_h_15_INCLASS \
 private: \
 	static void StaticRegisterNativesAAbilityScript(); \
 	friend struct Z_Construct_UClass_AAbilityScript_Statics; \
@@ -33,7 +33,7 @@ public: \
 	DECLARE_SERIALIZER(AAbilityScript)
 
 
-#define MageGame_Source_MageGame_AbilityScript_h_13_STANDARD_CONSTRUCTORS \
+#define MageGame_Source_MageGame_AbilityScript_h_15_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API AAbilityScript(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(AAbilityScript) \
@@ -46,7 +46,7 @@ private: \
 public:
 
 
-#define MageGame_Source_MageGame_AbilityScript_h_13_ENHANCED_CONSTRUCTORS \
+#define MageGame_Source_MageGame_AbilityScript_h_15_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API AAbilityScript(AAbilityScript&&); \
@@ -57,26 +57,26 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AAbilityScript); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(AAbilityScript)
 
 
-#define MageGame_Source_MageGame_AbilityScript_h_13_PRIVATE_PROPERTY_OFFSET
-#define MageGame_Source_MageGame_AbilityScript_h_10_PROLOG
-#define MageGame_Source_MageGame_AbilityScript_h_13_GENERATED_BODY_LEGACY \
+#define MageGame_Source_MageGame_AbilityScript_h_15_PRIVATE_PROPERTY_OFFSET
+#define MageGame_Source_MageGame_AbilityScript_h_12_PROLOG
+#define MageGame_Source_MageGame_AbilityScript_h_15_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	MageGame_Source_MageGame_AbilityScript_h_13_PRIVATE_PROPERTY_OFFSET \
-	MageGame_Source_MageGame_AbilityScript_h_13_RPC_WRAPPERS \
-	MageGame_Source_MageGame_AbilityScript_h_13_INCLASS \
-	MageGame_Source_MageGame_AbilityScript_h_13_STANDARD_CONSTRUCTORS \
+	MageGame_Source_MageGame_AbilityScript_h_15_PRIVATE_PROPERTY_OFFSET \
+	MageGame_Source_MageGame_AbilityScript_h_15_RPC_WRAPPERS \
+	MageGame_Source_MageGame_AbilityScript_h_15_INCLASS \
+	MageGame_Source_MageGame_AbilityScript_h_15_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define MageGame_Source_MageGame_AbilityScript_h_13_GENERATED_BODY \
+#define MageGame_Source_MageGame_AbilityScript_h_15_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	MageGame_Source_MageGame_AbilityScript_h_13_PRIVATE_PROPERTY_OFFSET \
-	MageGame_Source_MageGame_AbilityScript_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
-	MageGame_Source_MageGame_AbilityScript_h_13_INCLASS_NO_PURE_DECLS \
-	MageGame_Source_MageGame_AbilityScript_h_13_ENHANCED_CONSTRUCTORS \
+	MageGame_Source_MageGame_AbilityScript_h_15_PRIVATE_PROPERTY_OFFSET \
+	MageGame_Source_MageGame_AbilityScript_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+	MageGame_Source_MageGame_AbilityScript_h_15_INCLASS_NO_PURE_DECLS \
+	MageGame_Source_MageGame_AbilityScript_h_15_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

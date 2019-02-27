@@ -1,10 +1,13 @@
-#pragma once
-#include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
-#include "VMValue.generated.h"
+// Fill out your copyright notice in the Description page of Project Settings.
 
-UENUM()
-enum class EVMValueType : uint8
+#pragma once
+
+#include "CoreMinimal.h"
+
+/**
+ * 
+ */
+enum VMValueType
 {
 	VM_INT,
 	VM_FLOAT,
@@ -12,24 +15,19 @@ enum class EVMValueType : uint8
 	VM_INSTRUCTION
 };
 
-USTRUCT()
-struct FVMValue
+struct MAGEGAME_API VMValue
 {
-	//GENERATED_USTRUCT_BODY()
-	GENERATED_BODY()
+	VMValue();
+	VMValue(VMValueType _type, int _test);
+	~VMValue();
 
-	UPROPERTY(EditAnywhere)
-	EVMValueType type;
+	VMValueType type;
 
 	union Value
 	{
-		UPROPERTY(EditAnywhere)
 		int intValue;
-		UPROPERTY(EditAnywhere)
 		float floatValue;
-		UPROPERTY(EditAnywhere)
 		bool boolValue;
-		UPROPERTY(EditAnywhere)
 		int instructValue;
-	};
+	} value;
 };

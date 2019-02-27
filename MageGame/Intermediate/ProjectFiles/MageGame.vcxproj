@@ -499,6 +499,7 @@
     <NMakeOutput>..\..\Binaries\HTML5\MageGame-HTML5-Shipping.js</NMakeOutput>
   </PropertyGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\MageGame\VMValue.cpp" />
     <ClInclude Include="..\..\Source\MageGame\VMValue.h" />
     <None Include="..\..\MageGame.uproject" />
     <None Include="..\..\Source\MageGame.Target.cs" />

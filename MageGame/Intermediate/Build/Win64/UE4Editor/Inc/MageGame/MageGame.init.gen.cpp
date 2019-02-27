@@ -19,8 +19,8 @@ void EmptyLinkFunctionForGeneratedCodeMageGame_init() {}
 			static const UE4CodeGen_Private::FPackageParams PackageParams = {
 				"/Script/MageGame",
 				PKG_CompiledIn | 0x00000000,
-				0xDE739F95,
-				0xDF95231F,
+				0xCF636CDC,
+				0x6231074A,
 				nullptr, 0,
 				METADATA_PARAMS(nullptr, 0)
 			};

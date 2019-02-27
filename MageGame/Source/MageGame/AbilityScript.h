@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include <stack>
+
 #include "VMValue.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
@@ -19,8 +21,8 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Test")
 	int testInt;
 
-	UPROPERTY(EditAnywhere)
-	FVMValue testVal;
+	//UPROPERTY(EditAnywhere)
+	std::stack<VMValue> callStack;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

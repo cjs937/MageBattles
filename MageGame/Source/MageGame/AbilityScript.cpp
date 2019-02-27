@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "AbilityScript.h"
+#include "Engine/GameEngine.h"
 
 // Sets default values
 AAbilityScript::AAbilityScript()
@@ -15,6 +16,9 @@ void AAbilityScript::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	callStack.push(VMValue(VM_INT, 4));
+
+	PrimaryActorTick.bCanEverTick = true;
 }
 
 // Called every frame
@@ -22,5 +26,6 @@ void AAbilityScript::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Red, FString::Printf(TEXT("" + 1)));
 }
 
