@@ -9,16 +9,25 @@
  */
 enum VMValueType
 {
+	INVALID_VALUE,
 	VM_INT,
 	VM_FLOAT,
 	VM_BOOL,
-	VM_INSTRUCTION
+	VM_INSTRUCTION,
+	VM_VECTOR
 };
 
 struct MAGEGAME_API VMValue
 {
 	VMValue();
-	VMValue(VMValueType _type, int _test);
+
+	//template<typename T>
+	//VMValue(VMValueType _type, T _value);
+	
+	VMValue(VMValueType _type, int _value);
+	VMValue(VMValueType _type, float _value);
+	VMValue(VMValueType _type, bool  _value);
+
 	~VMValue();
 
 	VMValueType type;
@@ -29,5 +38,7 @@ struct MAGEGAME_API VMValue
 		float floatValue;
 		bool boolValue;
 		int instructValue;
+		//FVector vectorValue;
+
 	} value;
 };

@@ -2,18 +2,62 @@
 
 #include "VMValue.h"
 
-VMValue::VMValue()
+VMValue::VMValue(): type(INVALID_VALUE)
+{}
+
+//template<typename T>
+//VMValue::VMValue(const VMValueType &_type, const T &_value):type(_type)
+//{
+//	switch (_type)
+//	{
+//		case VM_INT:
+//		{
+//			value.intValue = (int)_value;
+//			break;
+//		}
+//		case VM_FLOAT:
+//		{
+//			value.floatValue = (float)_value;
+//			break;
+//		}
+//		case VM_BOOL:
+//		{
+//			value.boolValue = (bool)_value;
+//			break;
+//		}
+//		case VM_INSTRUCTION:
+//		{
+//			value.instructValue = (int)_value;
+//			break;
+//		}
+//		case VM_VECTOR:
+//		{
+//			value.vectorValue = (FVector)_value;
+//			break;
+//		}
+//		default:
+//			break;
+//	}
+//}
+
+VMValue::VMValue(VMValueType _type, int _value):type(_type)
 {
+	if (_type == VM_INT)
+		value.intValue = _value;
+	else if (_type == VM_INSTRUCTION)
+		value.instructValue = _value;
 }
 
-VMValue::VMValue(VMValueType _type, int _test)
+VMValue::VMValue(VMValueType _type, float _value): type(_type)
 {
-	type = _type;
+	value.floatValue = _value;
+}
 
-	value.intValue = _test;
+VMValue::VMValue(VMValueType _type, bool  _value): type(_type)
+{
+	value.boolValue = _value;
 }
 
 
 VMValue::~VMValue()
-{
-}
+{}
