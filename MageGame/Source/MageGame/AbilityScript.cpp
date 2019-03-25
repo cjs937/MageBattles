@@ -2,6 +2,7 @@
 
 #include "AbilityScript.h"
 #include "Engine/GameEngine.h"
+#include "VirtualMachine.h"
 
 // Sets default values
 AAbilityScript::AAbilityScript()
@@ -16,7 +17,7 @@ void AAbilityScript::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	VMValue test(VM_INT, 3);
+	VMValue test(VM_INSTRUCTION, ADD);
 
 	callStack.push(test);
 
@@ -31,5 +32,5 @@ void AAbilityScript::Tick(float DeltaTime)
 	int32 test1 = 0;
 	int32 test2 = 1;
 
-	GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Red, *FString::Printf(TEXT("TEST %i"), callStack.top().value.intValue));
+	GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Red, *FString::Printf(TEXT("TEST %i"), callStack.top().value.instructValue));
 }
