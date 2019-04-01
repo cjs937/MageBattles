@@ -2,15 +2,11 @@
 
 #pragma once
 
+#include "VMValue.h"
+#include <stack>
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "VirtualMachine.generated.h"
-
-enum VMInstructions
-{
-	ADD
-};
-
 
 UCLASS()
 class MAGEGAME_API AVirtualMachine : public AActor
@@ -20,12 +16,14 @@ class MAGEGAME_API AVirtualMachine : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AVirtualMachine();
+	static VMValue InterpretInstruction(VMInstruction instruction, std::stack<VMValue>& callStack);
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	float VMAdd(float lhs, float rhs);
-
+	
+	static VMValue VMAdd(VMValue lhs, VMValue rhs);
+	
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

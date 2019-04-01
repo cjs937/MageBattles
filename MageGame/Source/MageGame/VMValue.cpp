@@ -40,12 +40,14 @@ VMValue::VMValue(): type(INVALID_VALUE)
 //	}
 //}
 
+VMValue::VMValue(VMValueType _type, VMInstruction _value) :type(_type)
+{
+	value.instructValue = _value;
+}
+
 VMValue::VMValue(VMValueType _type, int _value):type(_type)
 {
-	if (_type == VM_INT)
-		value.intValue = _value;
-	else if (_type == VM_INSTRUCTION)
-		value.instructValue = _value;
+	value.intValue = _value;
 }
 
 VMValue::VMValue(VMValueType _type, float _value): type(_type)
