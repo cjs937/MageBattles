@@ -25,19 +25,22 @@ void AVirtualMachine::Tick(float DeltaTime)
 
 }
 
-VMValue AVirtualMachine::InterpretInstruction(VMInstruction instruction, std::stack<VMValue>& callStack)
+VMValue AVirtualMachine::InterpretInstruction(VMInstruction instruction, std::queue<VMValue>& callStack)
 {
 	switch (instruction)
 	{
 		case INSTRUCT_ADD:
 		{
-			VMValue lhs = callStack.top();
+			if (callStack.size() < 2)
+				return VMValue();
+
+			VMValue lhs = callStack.front();
 			callStack.pop();
 
 			if (lhs.type == VM_INSTRUCTION)
 				lhs = InterpretInstruction(lhs.value.instructValue, callStack);
 
-			VMValue rhs = callStack.top();
+			VMValue rhs = callStack.front();
 			callStack.pop();
 
 			if (rhs.type == VM_INSTRUCTION)

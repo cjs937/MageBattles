@@ -1,0 +1,15 @@
+Add (digit, vector)
+Subtract (digit, vector)
+Multiply (digit, vector, vector x digit)
+Divide (digit, vector, vector x digit)
+
+for loop (Start & end loop identifier, inbetween identifier sequence of code to run)
+Random (digit)
+Random Range(digit)
+
+SpawnProjectile(projectileType, location, directionVector, fireSpeed, damage)
+GetPlayerLocation(index)
+GetPlayerForward(index)
+GetPlayerLeft(index)
+GetPlayerUp(index)
+

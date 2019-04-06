@@ -3,7 +3,7 @@
 #pragma once
 
 #include "VMValue.h"
-#include <stack>
+#include <queue>
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "VirtualMachine.generated.h"
@@ -16,7 +16,7 @@ class MAGEGAME_API AVirtualMachine : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AVirtualMachine();
-	static VMValue InterpretInstruction(VMInstruction instruction, std::stack<VMValue>& callStack);
+	static VMValue InterpretInstruction(VMInstruction instruction, std::queue<VMValue>& callStack);
 
 protected:
 	// Called when the game starts or when spawned

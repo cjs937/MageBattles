@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include <stack>
+#include <queue>
 
 #include "VMValue.h"
 #include "CoreMinimal.h"
@@ -22,7 +22,7 @@ public:
 	int testInt;
 
 	//UPROPERTY(EditAnywhere)
-	std::stack<VMValue> callStack;
+	std::queue<VMValue> callStack;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

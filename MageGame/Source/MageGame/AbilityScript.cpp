@@ -16,7 +16,7 @@ AAbilityScript::AAbilityScript()
 void AAbilityScript::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 	VMValue test(VM_INSTRUCTION, INSTRUCT_ADD);
 	VMValue lhs(VM_INT, 1);
 	VMValue rhs(VM_INT, 2);
@@ -27,6 +27,8 @@ void AAbilityScript::BeginPlay()
 
 
 	PrimaryActorTick.bCanEverTick = true;
+
+	testInt = 0;
 }
 
 // Called every frame
@@ -36,13 +38,13 @@ void AAbilityScript::Tick(float DeltaTime)
 
 	if (callStack.size() > 0)
 	{
-
-		VMInstruction instruct = callStack.top().value.instructValue;
-
+		VMInstruction instruct = callStack.front().value.instructValue;
+		callStack.pop();
+		
 		VMValue test = AVirtualMachine::InterpretInstruction(instruct, callStack);
-
+		
 		testInt = test.value.intValue;
-	}
+	}	
 
 	GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Red, *FString::Printf(TEXT("TEST %i"), testInt));
 }
