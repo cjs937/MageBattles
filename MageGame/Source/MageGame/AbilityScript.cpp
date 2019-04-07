@@ -17,18 +17,32 @@ void AAbilityScript::BeginPlay()
 {
 	Super::BeginPlay();
 
-	VMValue test(VM_INSTRUCTION, INSTRUCT_ADD);
-	VMValue lhs(VM_INT, 1);
-	VMValue rhs(VM_INT, 2);
-
-	callStack.push(test);
-	callStack.push(lhs);
-	callStack.push(rhs);
-
-
 	PrimaryActorTick.bCanEverTick = true;
 
-	testInt = 0;
+	operation1Result = 0;
+	operation2Result = 0;
+	operation3Result = 0;
+
+	//op1
+	callStack.push(VMValue(VM_INSTRUCTION, INSTRUCT_ADD));
+	callStack.push(VMValue(VM_INT, testInt1));
+	callStack.push(VMValue(VM_INT, testInt2));
+	
+	//op2
+	callStack.push(VMValue(VM_INSTRUCTION, INSTRUCT_SUBTRACT));
+	callStack.push(VMValue(VM_INT, testInt1));
+	callStack.push(VMValue(VM_INSTRUCTION, INSTRUCT_ADD));
+	callStack.push(VMValue(VM_INT, testInt1));
+	callStack.push(VMValue(VM_INT, testInt2));
+
+	//op3
+	callStack.push(VMValue(VM_INSTRUCTION, INSTRUCT_MULTIPLY));
+	callStack.push(VMValue(VM_INSTRUCTION, INSTRUCT_ADD));
+	callStack.push(VMValue(VM_INT, testInt1));
+	callStack.push(VMValue(VM_INT, testInt2));
+	callStack.push(VMValue(VM_INSTRUCTION, INSTRUCT_DIVIDE));
+	callStack.push(VMValue(VM_INT, testInt2));
+	callStack.push(VMValue(VM_INT, testInt1));
 }
 
 // Called every frame
@@ -38,13 +52,35 @@ void AAbilityScript::Tick(float DeltaTime)
 
 	if (callStack.size() > 0)
 	{
+		//op1
 		VMInstruction instruct = callStack.front().value.instructValue;
 		callStack.pop();
 		
-		VMValue test = AVirtualMachine::InterpretInstruction(instruct, callStack);
+		VMValue test = AVirtualMachine::InterpretInstruction(instruct, &callStack);
 		
-		testInt = test.value.intValue;
+		operation1Result = test.value.intValue;
+
+		//op2
+		instruct = callStack.front().value.instructValue;
+		callStack.pop();
+		
+		test = AVirtualMachine::InterpretInstruction(instruct, &callStack);
+		
+		operation2Result = test.value.intValue;
+		
+		//op3
+		instruct = callStack.front().value.instructValue;
+		callStack.pop();
+		
+		test = AVirtualMachine::InterpretInstruction(instruct, &callStack);
+		
+		operation3Result = test.value.intValue;
+
+		GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, *FString::Printf(TEXT("Operation 1: %i"), operation1Result));
 	}	
 
-	GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Red, *FString::Printf(TEXT("TEST %i"), testInt));
+	GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Red, *FString::Printf(TEXT("Operation 1: %i"), operation1Result));
+	GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Red, *FString::Printf(TEXT("Operation 2: %i"), operation2Result));
+	GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Red, *FString::Printf(TEXT("Operation 3: %i"), operation3Result));
+
 }

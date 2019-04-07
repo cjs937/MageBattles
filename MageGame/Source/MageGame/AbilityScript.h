@@ -18,8 +18,11 @@ public:
 	// Sets default values for this actor's properties
 	AAbilityScript();
 
-	UPROPERTY(EditAnywhere, Category = "Test")
-	int testInt;
+	UPROPERTY(EditAnywhere)
+	int testInt1;
+
+	UPROPERTY(EditAnywhere)
+	int testInt2;
 
 	//UPROPERTY(EditAnywhere)
 	std::queue<VMValue> callStack;
@@ -30,5 +33,11 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+private:
+	int operation1Result;
+	int operation2Result;
+	int operation3Result;
+	//int testDivide;
 	
 };

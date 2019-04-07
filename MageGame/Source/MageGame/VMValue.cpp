@@ -3,7 +3,9 @@
 #include "VMValue.h"
 
 VMValue::VMValue(): type(INVALID_VALUE)
-{}
+{
+	value.intValue = -99999;
+}
 
 //template<typename T>
 //VMValue::VMValue(const VMValueType &_type, const T &_value):type(_type)
