@@ -24,25 +24,25 @@ void AAbilityScript::BeginPlay()
 	operation3Result = 0;
 
 	//op1
-	callStack.push(VMValue(VM_INSTRUCTION, INSTRUCT_ADD));
-	callStack.push(VMValue(VM_INT, testInt1));
-	callStack.push(VMValue(VM_INT, testInt2));
+	callStack.push(VMValue(VMValueType::VM_INSTRUCTION, INSTRUCT_ADD));
+	callStack.push(VMValue(VMValueType::VM_INT, testInt1));
+	callStack.push(VMValue(VMValueType::VM_INT, testInt2));
 	
 	//op2
-	callStack.push(VMValue(VM_INSTRUCTION, INSTRUCT_SUBTRACT));
-	callStack.push(VMValue(VM_INT, testInt1));
-	callStack.push(VMValue(VM_INSTRUCTION, INSTRUCT_ADD));
-	callStack.push(VMValue(VM_INT, testInt1));
-	callStack.push(VMValue(VM_INT, testInt2));
+	callStack.push(VMValue(VMValueType::VM_INSTRUCTION, INSTRUCT_SUBTRACT));
+	callStack.push(VMValue(VMValueType::VM_INT, testInt1));
+	callStack.push(VMValue(VMValueType::VM_INSTRUCTION, INSTRUCT_ADD));
+	callStack.push(VMValue(VMValueType::VM_INT, testInt1));
+	callStack.push(VMValue(VMValueType::VM_INT, testInt2));
 
 	//op3
-	callStack.push(VMValue(VM_INSTRUCTION, INSTRUCT_MULTIPLY));
-	callStack.push(VMValue(VM_INSTRUCTION, INSTRUCT_ADD));
-	callStack.push(VMValue(VM_INT, testInt1));
-	callStack.push(VMValue(VM_INT, testInt2));
-	callStack.push(VMValue(VM_INSTRUCTION, INSTRUCT_DIVIDE));
-	callStack.push(VMValue(VM_INT, testInt2));
-	callStack.push(VMValue(VM_INT, testInt1));
+	callStack.push(VMValue(VMValueType::VM_INSTRUCTION, INSTRUCT_MULTIPLY));
+	callStack.push(VMValue(VMValueType::VM_INSTRUCTION, INSTRUCT_ADD));
+	callStack.push(VMValue(VMValueType::VM_INT, testInt1));
+	callStack.push(VMValue(VMValueType::VM_INT, testInt2));
+	callStack.push(VMValue(VMValueType::VM_INSTRUCTION, INSTRUCT_DIVIDE));
+	callStack.push(VMValue(VMValueType::VM_INT, testInt2));
+	callStack.push(VMValue(VMValueType::VM_INT, testInt1));
 }
 
 // Called every frame

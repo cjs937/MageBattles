@@ -2,7 +2,7 @@
 
 #include "VMValue.h"
 
-VMValue::VMValue(): type(INVALID_VALUE)
+VMValue::VMValue(): type(VMValueType::INVALID_VALUE)
 {
 	value.intValue = -99999;
 }

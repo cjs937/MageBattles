@@ -41,13 +41,13 @@ VMValue AVirtualMachine::InterpretInstruction(VMInstruction instruction, std::qu
 			VMValue lhs = callStack->front();
 			callStack->pop();
 
-			if (lhs.type == VM_INSTRUCTION)
+			if (lhs.type == VMValueType::VM_INSTRUCTION)
 				lhs = InterpretInstruction(lhs.value.instructValue, callStack);
 
 			VMValue rhs = callStack->front();
 			callStack->pop();
 
-			if (rhs.type == VM_INSTRUCTION)
+			if (rhs.type == VMValueType::VM_INSTRUCTION)
 				rhs = InterpretInstruction(rhs.value.instructValue, callStack);
 
 			return VMAdd(lhs, rhs);
@@ -60,13 +60,13 @@ VMValue AVirtualMachine::InterpretInstruction(VMInstruction instruction, std::qu
 			VMValue lhs = callStack->front();
 			callStack->pop();
 
-			if (lhs.type == VM_INSTRUCTION)
+			if (lhs.type == VMValueType::VM_INSTRUCTION)
 				lhs = InterpretInstruction(lhs.value.instructValue, callStack);
 
 			VMValue rhs = callStack->front();
 			callStack->pop();
 
-			if (rhs.type == VM_INSTRUCTION)
+			if (rhs.type == VMValueType::VM_INSTRUCTION)
 			{
 				rhs = InterpretInstruction(rhs.value.instructValue, callStack);
 			}
@@ -81,13 +81,13 @@ VMValue AVirtualMachine::InterpretInstruction(VMInstruction instruction, std::qu
 			VMValue lhs = callStack->front();
 			callStack->pop();
 
-			if (lhs.type == VM_INSTRUCTION)
+			if (lhs.type == VMValueType::VM_INSTRUCTION)
 				lhs = InterpretInstruction(lhs.value.instructValue, callStack);
 
 			VMValue rhs = callStack->front();
 			callStack->pop();
 
-			if (rhs.type == VM_INSTRUCTION)
+			if (rhs.type == VMValueType::VM_INSTRUCTION)
 				rhs = InterpretInstruction(rhs.value.instructValue, callStack);
 
 			return VMMultiply(lhs, rhs);
@@ -100,13 +100,13 @@ VMValue AVirtualMachine::InterpretInstruction(VMInstruction instruction, std::qu
 			VMValue lhs = callStack->front();
 			callStack->pop();
 
-			if (lhs.type == VM_INSTRUCTION)
+			if (lhs.type == VMValueType::VM_INSTRUCTION)
 				lhs = InterpretInstruction(lhs.value.instructValue, callStack);
 
 			VMValue rhs = callStack->front();
 			callStack->pop();
 
-			if (rhs.type == VM_INSTRUCTION)
+			if (rhs.type == VMValueType::VM_INSTRUCTION)
 				rhs = InterpretInstruction(rhs.value.instructValue, callStack);
 
 			return VMDivide(lhs, rhs);
@@ -129,15 +129,15 @@ VMValue AVirtualMachine::VMAdd(VMValue lhs, VMValue rhs)
 
 	switch (lhs.type)
 	{
-		case VM_INT:
+		case VMValueType::VM_INT:
 		{
-			return VMValue(VM_INT, lhs.value.intValue + rhs.value.intValue);
+			return VMValue(VMValueType::VM_INT, lhs.value.intValue + rhs.value.intValue);
 		}
-		case VM_FLOAT:
+		case VMValueType::VM_FLOAT:
 		{
-			return VMValue(VM_FLOAT, lhs.value.floatValue + rhs.value.floatValue);
+			return VMValue(VMValueType::VM_FLOAT, lhs.value.floatValue + rhs.value.floatValue);
 		}
-		case VM_VECTOR:
+		case VMValueType::VM_VECTOR:
 		{
 			//return VMValue(VM_VECTOR, lhs.value.)
 		}
@@ -162,15 +162,15 @@ VMValue AVirtualMachine::VMSubtract(VMValue lhs, VMValue rhs)
 
 	switch (lhs.type)
 	{
-		case VM_INT:
+		case VMValueType::VM_INT:
 		{
-			return VMValue(VM_INT, lhs.value.intValue - rhs.value.intValue);
+			return VMValue(VMValueType::VM_INT, lhs.value.intValue - rhs.value.intValue);
 		}
-		case VM_FLOAT:
+		case VMValueType::VM_FLOAT:
 		{
-			return VMValue(VM_FLOAT, lhs.value.floatValue - rhs.value.floatValue);
+			return VMValue(VMValueType::VM_FLOAT, lhs.value.floatValue - rhs.value.floatValue);
 		}
-		case VM_VECTOR:
+		case VMValueType::VM_VECTOR:
 		{
 			//return VMValue(VM_VECTOR, lhs.value.)
 		}
@@ -195,15 +195,15 @@ VMValue AVirtualMachine::VMMultiply(VMValue lhs, VMValue rhs)
 
 	switch (lhs.type)
 	{
-		case VM_INT:
+		case VMValueType::VM_INT:
 		{
-			return VMValue(VM_INT, lhs.value.intValue * rhs.value.intValue);
+			return VMValue(VMValueType::VM_INT, lhs.value.intValue * rhs.value.intValue);
 		}
-		case VM_FLOAT:
+		case VMValueType::VM_FLOAT:
 		{
-			return VMValue(VM_FLOAT, lhs.value.floatValue * rhs.value.floatValue);
+			return VMValue(VMValueType::VM_FLOAT, lhs.value.floatValue * rhs.value.floatValue);
 		}
-		case VM_VECTOR:
+		case VMValueType::VM_VECTOR:
 		{
 			//return VMValue(VM_VECTOR, lhs.value.)
 		}
@@ -234,15 +234,15 @@ VMValue AVirtualMachine::VMDivide(VMValue lhs, VMValue rhs)
 
 	switch (lhs.type)
 	{
-		case VM_INT:
+	case VMValueType::VM_INT:
 		{
-			return VMValue(VM_INT, lhs.value.intValue / rhs.value.intValue);
+			return VMValue(VMValueType::VM_INT, lhs.value.intValue / rhs.value.intValue);
 		}
-		case VM_FLOAT:
+		case VMValueType::VM_FLOAT:
 		{
-			return VMValue(VM_FLOAT, lhs.value.floatValue / rhs.value.floatValue);
+			return VMValue(VMValueType::VM_FLOAT, lhs.value.floatValue / rhs.value.floatValue);
 		}
-		case VM_VECTOR:
+		case VMValueType::VM_VECTOR:
 		{
 			//return VMValue(VM_VECTOR, lhs.value.)
 		}
@@ -255,14 +255,14 @@ VMValue AVirtualMachine::VMDivide(VMValue lhs, VMValue rhs)
 	}
 }
 
-VMValue  AVirtualMachine::Random()
+VMValue AVirtualMachine::Random()
 {
-	return VMValue(VM_FLOAT, FMath::Rand());
+	return VMValue(VMValueType::VM_FLOAT, (float)FMath::Rand());
 }
 
-VMValue  AVirtualMachine::RandomRange(float min, float max)
+VMValue AVirtualMachine::RandomRange(float min, float max)
 {
-	return VMValue(VM_FLOAT, FMath::RandRange(min, max));
+	return VMValue(VMValueType::VM_FLOAT, (float)FMath::RandRange(min, max));
 }
 
 VMValue  AVirtualMachine::GetPlayerLocation(int playerIndex)
