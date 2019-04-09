@@ -38,6 +38,25 @@ enum VMInstruction
 	INSTRUCT_DIVIDE
 };
 
+//struct VMVector
+//{
+//	VMVector()
+//	{
+//		x = 0;
+//		y = 0;
+//		z = 0;
+//	};
+//
+//	//VMVector(float _x = 0, float _y = 0, float _z = 0)
+//	//{
+//	//	x = _x;
+//	//	y = _y;
+//	//	z = _z;
+//	//}
+//
+//	float x, y, z;
+//};
+
 struct MAGEGAME_API VMValue
 {
 	VMValue();
@@ -49,6 +68,7 @@ struct MAGEGAME_API VMValue
 	VMValue(VMValueType _type, int _value);
 	VMValue(VMValueType _type, float _value);
 	VMValue(VMValueType _type, bool  _value);
+	//VMValue(VMValueType _type, VMVector _value);
 
 	~VMValue();
 
@@ -60,7 +80,6 @@ struct MAGEGAME_API VMValue
 		float floatValue;
 		bool boolValue;
 		VMInstruction instructValue;
-		//FVector vectorValue;
-
+		//VMVector vectorValue;
 	} value;
 };

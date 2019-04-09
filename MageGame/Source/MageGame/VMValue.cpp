@@ -4,7 +4,7 @@
 
 VMValue::VMValue(): type(VMValueType::INVALID_VALUE)
 {
-	value.intValue = -99999;
+	//value.intValue = -99999;
 }
 
 //template<typename T>
@@ -61,6 +61,11 @@ VMValue::VMValue(VMValueType _type, bool  _value): type(_type)
 {
 	value.boolValue = _value;
 }
+
+//VMValue::VMValue(VMValueType _type, VMVector _value): type(_type)
+//{
+//
+//}
 
 
 VMValue::~VMValue()
