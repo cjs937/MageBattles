@@ -2,7 +2,7 @@
 
 #include "VirtualMachine.h"
 #include "Engine/GameEngine.h"
-#include "Runtime/Engine/Classes/GameFramework/PlayerController.h"
+#include "Runtime/Engine/Classes/GameFramework/Character.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 #include "Runtime/Engine/Classes/GameFramework/Actor.h"
 #include "Engine/World.h"
@@ -33,7 +33,7 @@ VMValue AVirtualMachine::InterpretInstruction(VMInstruction instruction, std::qu
 {
 	switch (instruction)
 	{
-		case INSTRUCT_ADD:
+		case VMInstruction::INSTRUCT_ADD:
 		{
 			if (callStack->size() < 2)
 				return VMValue();
@@ -52,7 +52,7 @@ VMValue AVirtualMachine::InterpretInstruction(VMInstruction instruction, std::qu
 
 			return VMAdd(lhs, rhs);
 		}
-		case INSTRUCT_SUBTRACT:
+		case VMInstruction::INSTRUCT_SUBTRACT:
 		{
 			if (callStack->size() < 2)
 				return VMValue();
@@ -73,7 +73,7 @@ VMValue AVirtualMachine::InterpretInstruction(VMInstruction instruction, std::qu
 
 			return VMSubtract(lhs, rhs);
 		}
-		case INSTRUCT_MULTIPLY:
+		case VMInstruction::INSTRUCT_MULTIPLY:
 		{
 			if (callStack->size() < 2)
 				return VMValue();
@@ -92,7 +92,7 @@ VMValue AVirtualMachine::InterpretInstruction(VMInstruction instruction, std::qu
 
 			return VMMultiply(lhs, rhs);
 		}
-		case INSTRUCT_DIVIDE:
+		case VMInstruction::INSTRUCT_DIVIDE:
 		{
 			if (callStack->size() < 2)
 				return VMValue();
@@ -110,6 +110,19 @@ VMValue AVirtualMachine::InterpretInstruction(VMInstruction instruction, std::qu
 				rhs = InterpretInstruction(rhs.value.instructValue, callStack);
 
 			return VMDivide(lhs, rhs);
+		}
+		case VMInstruction::INSTRUCT_LOCATION:
+		{
+			if (callStack->size() == 0)
+				return VMValue();
+
+			VMValue index = callStack->front();
+			callStack->pop();
+
+			if (index.type == VMValueType::VM_INSTRUCTION)
+				index = InterpretInstruction(index.value.instructValue, callStack);
+
+			return GetPlayerLocation(index.value.intValue);
 		}
 		default:
 			return VMValue();
@@ -131,11 +144,11 @@ VMValue AVirtualMachine::VMAdd(VMValue lhs, VMValue rhs)
 	{
 		case VMValueType::VM_INT:
 		{
-			return VMValue(VMValueType::VM_INT, lhs.value.intValue + rhs.value.intValue);
+			return VMValue(lhs.value.intValue + rhs.value.intValue);
 		}
 		case VMValueType::VM_FLOAT:
 		{
-			return VMValue(VMValueType::VM_FLOAT, lhs.value.floatValue + rhs.value.floatValue);
+			return VMValue(lhs.value.floatValue + rhs.value.floatValue);
 		}
 		case VMValueType::VM_VECTOR:
 		{
@@ -164,11 +177,11 @@ VMValue AVirtualMachine::VMSubtract(VMValue lhs, VMValue rhs)
 	{
 		case VMValueType::VM_INT:
 		{
-			return VMValue(VMValueType::VM_INT, lhs.value.intValue - rhs.value.intValue);
+			return VMValue(lhs.value.intValue - rhs.value.intValue);
 		}
 		case VMValueType::VM_FLOAT:
 		{
-			return VMValue(VMValueType::VM_FLOAT, lhs.value.floatValue - rhs.value.floatValue);
+			return VMValue(lhs.value.floatValue - rhs.value.floatValue);
 		}
 		case VMValueType::VM_VECTOR:
 		{
@@ -197,11 +210,11 @@ VMValue AVirtualMachine::VMMultiply(VMValue lhs, VMValue rhs)
 	{
 		case VMValueType::VM_INT:
 		{
-			return VMValue(VMValueType::VM_INT, lhs.value.intValue * rhs.value.intValue);
+			return VMValue(lhs.value.intValue * rhs.value.intValue);
 		}
 		case VMValueType::VM_FLOAT:
 		{
-			return VMValue(VMValueType::VM_FLOAT, lhs.value.floatValue * rhs.value.floatValue);
+			return VMValue(lhs.value.floatValue * rhs.value.floatValue);
 		}
 		case VMValueType::VM_VECTOR:
 		{
@@ -236,11 +249,11 @@ VMValue AVirtualMachine::VMDivide(VMValue lhs, VMValue rhs)
 	{
 	case VMValueType::VM_INT:
 		{
-			return VMValue(VMValueType::VM_INT, lhs.value.intValue / rhs.value.intValue);
+			return VMValue(lhs.value.intValue / rhs.value.intValue);
 		}
 		case VMValueType::VM_FLOAT:
 		{
-			return VMValue(VMValueType::VM_FLOAT, lhs.value.floatValue / rhs.value.floatValue);
+			return VMValue(lhs.value.floatValue / rhs.value.floatValue);
 		}
 		case VMValueType::VM_VECTOR:
 		{
@@ -257,17 +270,26 @@ VMValue AVirtualMachine::VMDivide(VMValue lhs, VMValue rhs)
 
 VMValue AVirtualMachine::Random()
 {
-	return VMValue(VMValueType::VM_FLOAT, (float)FMath::Rand());
+	return VMValue((float)FMath::Rand());
 }
 
 VMValue AVirtualMachine::RandomRange(float min, float max)
 {
-	return VMValue(VMValueType::VM_FLOAT, (float)FMath::RandRange(min, max));
+	return VMValue((float)FMath::RandRange(min, max));
 }
 
-VMValue  AVirtualMachine::GetPlayerLocation(int playerIndex)
+VMValue AVirtualMachine::GetPlayerLocation(int playerIndex)
 {
-	//APlayerController* test = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+	GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Red, *FString::Printf(TEXT("Index: %d"), playerIndex));
+
+	ACharacter* player = UGameplayStatics::GetPlayerCharacter(GetWorld(), playerIndex);
+
+	if (player == NULL)
+		return VMValue();
+
+	FVector loc = player->GetActorLocation();
+	VMValue location(VMVector(loc.X, loc.Y, loc.Z));
+
 	//test->GetActorLocation();
 	return VMValue();
 

@@ -2,70 +2,51 @@
 
 #include "VMValue.h"
 
-VMValue::VMValue(): type(VMValueType::INVALID_VALUE)
+
+//-----------------------------------------VMVector-------------------------------------//
+VMVector::VMVector(float _x, float _y, float _z)
 {
-	//value.intValue = -99999;
+	x = _x;
+	y = _y;
+	z = _z;
 }
 
-//template<typename T>
-//VMValue::VMValue(const VMValueType &_type, const T &_value):type(_type)
-//{
-//	switch (_type)
-//	{
-//		case VM_INT:
-//		{
-//			value.intValue = (int)_value;
-//			break;
-//		}
-//		case VM_FLOAT:
-//		{
-//			value.floatValue = (float)_value;
-//			break;
-//		}
-//		case VM_BOOL:
-//		{
-//			value.boolValue = (bool)_value;
-//			break;
-//		}
-//		case VM_INSTRUCTION:
-//		{
-//			value.instructValue = (int)_value;
-//			break;
-//		}
-//		case VM_VECTOR:
-//		{
-//			value.vectorValue = (FVector)_value;
-//			break;
-//		}
-//		default:
-//			break;
-//	}
-//}
+FVector VMVector::convertToFVec()
+{
+	return FVector(x, y, z);
+}
 
-VMValue::VMValue(VMValueType _type, VMInstruction _value) :type(_type)
+//-----------------------------------------VMValue-------------------------------------//
+
+VMValue::VMValue(): type(VMValueType::INVALID_VALUE)
+{
+	value.vectorValue = VMVector(-1, -10, -100);
+}
+
+VMValue::VMValue(VMInstruction _value) :type(VMValueType::VM_INSTRUCTION)
 {
 	value.instructValue = _value;
 }
 
-VMValue::VMValue(VMValueType _type, int _value):type(_type)
+VMValue::VMValue(int _value):type(VMValueType::VM_INT)
 {
 	value.intValue = _value;
 }
 
-VMValue::VMValue(VMValueType _type, float _value): type(_type)
+VMValue::VMValue(float _value): type(VMValueType::VM_FLOAT)
 {
 	value.floatValue = _value;
 }
 
-VMValue::VMValue(VMValueType _type, bool  _value): type(_type)
+VMValue::VMValue(bool  _value): type(VMValueType::VM_BOOL)
 {
 	value.boolValue = _value;
 }
 
-//VMValue::VMValue(VMValueType _type, VMVector _value): type(_type)
-//{
-//
-//}
+VMValue::VMValue(VMVector _value): type(VMValueType::VM_VECTOR)
+{
+	value.vectorValue = _value;
+}
 
 
 VMValue::~VMValue()

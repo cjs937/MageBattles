@@ -8,7 +8,7 @@
  * 
  */
 
-UENUM(BlueprintType)		//"BlueprintType" is essential to include
+UENUM(BlueprintType)
 enum class VMValueType : uint8
 {
 	INVALID_VALUE UMETA(DisplayName = "Invalid Value"),
@@ -20,42 +20,25 @@ enum class VMValueType : uint8
 };
 
 
-//enum VMValueType
-//{
-//	INVALID_VALUE,
-//	VM_INT,
-//	VM_FLOAT,
-//	VM_BOOL,
-//	VM_INSTRUCTION,
-//	VM_VECTOR
-//};
-
-enum VMInstruction
+UENUM(BlueprintType)
+enum class VMInstruction : uint8
 {
-	INSTRUCT_ADD,
-	INSTRUCT_SUBTRACT,
-	INSTRUCT_MULTIPLY,
-	INSTRUCT_DIVIDE
+	INSTRUCT_ADD UMETA(DisplayName = "Add Instruction"),
+	INSTRUCT_SUBTRACT UMETA(DisplayName = "Subtact Instruction"),
+	INSTRUCT_MULTIPLY UMETA(DisplayName = "Multiply Instruction"),
+	INSTRUCT_DIVIDE UMETA(DisplayName = "Divide Instruction"),
+	INSTRUCT_LOCATION UMETA(DisplayName = "Get Location Instruction")
 };
 
-//struct VMVector
-//{
-//	VMVector()
-//	{
-//		x = 0;
-//		y = 0;
-//		z = 0;
-//	};
-//
-//	//VMVector(float _x = 0, float _y = 0, float _z = 0)
-//	//{
-//	//	x = _x;
-//	//	y = _y;
-//	//	z = _z;
-//	//}
-//
-//	float x, y, z;
-//};
+struct VMVector
+{
+	float x, y, z;
+
+	VMVector() = default;
+
+	VMVector(float _x, float _y, float _z);
+	FVector convertToFVec();
+};
 
 struct MAGEGAME_API VMValue
 {
@@ -64,11 +47,11 @@ struct MAGEGAME_API VMValue
 	//template<typename T>
 	//VMValue(VMValueType _type, T _value);
 	
-	VMValue(VMValueType _type, VMInstruction _value);
-	VMValue(VMValueType _type, int _value);
-	VMValue(VMValueType _type, float _value);
-	VMValue(VMValueType _type, bool  _value);
-	//VMValue(VMValueType _type, VMVector _value);
+	VMValue(VMInstruction _value);
+	VMValue(int _value);
+	VMValue(float _value);
+	VMValue(bool  _value);
+	VMValue(VMVector _value);
 
 	~VMValue();
 
@@ -80,6 +63,6 @@ struct MAGEGAME_API VMValue
 		float floatValue;
 		bool boolValue;
 		VMInstruction instructValue;
-		//VMVector vectorValue;
+		VMVector vectorValue;
 	} value;
 };

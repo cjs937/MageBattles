@@ -7,6 +7,7 @@
 #include "VMValue.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "VirtualMachine.h"
 #include "AbilityScript.generated.h"
 
 UCLASS()
@@ -23,6 +24,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	int testInt2;
+
+	UPROPERTY(EditAnywhere)
+	AVirtualMachine* VM;
 
 	//UPROPERTY(EditAnywhere)
 	std::queue<VMValue> callStack;
