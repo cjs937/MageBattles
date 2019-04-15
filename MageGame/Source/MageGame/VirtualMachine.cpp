@@ -282,7 +282,7 @@ VMValue AVirtualMachine::GetPlayerLocation(int playerIndex)
 {
 	GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Red, *FString::Printf(TEXT("Index: %d"), playerIndex));
 
-	ACharacter* player = UGameplayStatics::GetPlayerCharacter(GetWorld(), playerIndex);
+	ACharacter* player = UGameplayStatics::GetPlayerCharacter(this, playerIndex);
 
 	if (player == NULL)
 		return VMValue();
@@ -291,7 +291,7 @@ VMValue AVirtualMachine::GetPlayerLocation(int playerIndex)
 	VMValue location(VMVector(loc.X, loc.Y, loc.Z));
 
 	//test->GetActorLocation();
-	return VMValue();
+	return location;//VMValue();
 
 }
 
