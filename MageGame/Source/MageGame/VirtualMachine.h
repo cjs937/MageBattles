@@ -28,6 +28,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "VirtualMachine")
 	void PushInstruction(VMInstruction instruct);
 
+	UFUNCTION(BlueprintCallable, Category = "VirtualMachine")
+	void Clear();
+
 protected:
 	
 	std::stack<VMValue> callStack;
@@ -40,6 +43,7 @@ protected:
 	VMValue VMSubtract(VMValue lhs, VMValue rhs);
 	VMValue VMMultiply(VMValue lhs, VMValue rhs);
 	VMValue VMDivide(VMValue lhs, VMValue rhs);
+	VMValue VMPow(VMValue value, VMValue power);
 
 	VMValue Random();
 	VMValue RandomRange(float min, float max);

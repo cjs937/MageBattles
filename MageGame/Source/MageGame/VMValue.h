@@ -27,6 +27,7 @@ enum class VMInstruction : uint8
 	INSTRUCT_SUBTRACT UMETA(DisplayName = "Subtact Instruction"),
 	INSTRUCT_MULTIPLY UMETA(DisplayName = "Multiply Instruction"),
 	INSTRUCT_DIVIDE UMETA(DisplayName = "Divide Instruction"),
+	INSTRUCT_POW UMETA(DisplayName = "Power Instruction"),
 	INSTRUCT_LOCATION UMETA(DisplayName = "Get Location Instruction")
 };
 

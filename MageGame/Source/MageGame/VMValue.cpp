@@ -67,6 +67,9 @@ int GetInstructionWeight(VMInstruction instruct)
 	{
 		return 3;
 	}
+	case VMInstruction::INSTRUCT_POW:
+		return 4;
+
 	default:
 		return -1;
 	}
