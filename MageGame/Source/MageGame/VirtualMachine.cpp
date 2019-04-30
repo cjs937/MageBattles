@@ -27,106 +27,138 @@ void AVirtualMachine::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (callStack.size() > 0)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Red, *FString::Printf(TEXT("%d"), callStack.top().value.intValue));
+	}
 }
 
-VMValue AVirtualMachine::InterpretInstruction(VMInstruction instruction, std::queue<VMValue>* callStack)
+VMValue AVirtualMachine::InterpretInstruction(VMInstruction instruction)
 {
 	switch (instruction)
 	{
 		case VMInstruction::INSTRUCT_ADD:
 		{
-			if (callStack->size() < 2)
+			if (callStack.size() < 2)
 				return VMValue();
 
-			VMValue lhs = callStack->front();
-			callStack->pop();
-
-			if (lhs.type == VMValueType::VM_INSTRUCTION)
-				lhs = InterpretInstruction(lhs.value.instructValue, callStack);
-
-			VMValue rhs = callStack->front();
-			callStack->pop();
+			VMValue rhs = callStack.top();
+			callStack.pop();
 
 			if (rhs.type == VMValueType::VM_INSTRUCTION)
-				rhs = InterpretInstruction(rhs.value.instructValue, callStack);
+				rhs = InterpretInstruction(rhs.value.instructValue);
+
+			VMValue lhs = callStack.top();
+			callStack.pop();
+
+			if (lhs.type == VMValueType::VM_INSTRUCTION)
+				lhs = InterpretInstruction(lhs.value.instructValue);
 
 			return VMAdd(lhs, rhs);
 		}
 		case VMInstruction::INSTRUCT_SUBTRACT:
 		{
-			if (callStack->size() < 2)
+			if (callStack.size() < 2)
 				return VMValue();
 
-			VMValue lhs = callStack->front();
-			callStack->pop();
-
-			if (lhs.type == VMValueType::VM_INSTRUCTION)
-				lhs = InterpretInstruction(lhs.value.instructValue, callStack);
-
-			VMValue rhs = callStack->front();
-			callStack->pop();
+			VMValue rhs = callStack.top();
+			callStack.pop();
 
 			if (rhs.type == VMValueType::VM_INSTRUCTION)
-			{
-				rhs = InterpretInstruction(rhs.value.instructValue, callStack);
-			}
+				rhs = InterpretInstruction(rhs.value.instructValue);
+
+			VMValue lhs = callStack.top();
+			callStack.pop();
+
+			if (lhs.type == VMValueType::VM_INSTRUCTION)
+				lhs = InterpretInstruction(lhs.value.instructValue);
 
 			return VMSubtract(lhs, rhs);
 		}
-		case VMInstruction::INSTRUCT_MULTIPLY:
-		{
-			if (callStack->size() < 2)
-				return VMValue();
-
-			VMValue lhs = callStack->front();
-			callStack->pop();
-
-			if (lhs.type == VMValueType::VM_INSTRUCTION)
-				lhs = InterpretInstruction(lhs.value.instructValue, callStack);
-
-			VMValue rhs = callStack->front();
-			callStack->pop();
-
-			if (rhs.type == VMValueType::VM_INSTRUCTION)
-				rhs = InterpretInstruction(rhs.value.instructValue, callStack);
-
-			return VMMultiply(lhs, rhs);
-		}
-		case VMInstruction::INSTRUCT_DIVIDE:
-		{
-			if (callStack->size() < 2)
-				return VMValue();
-
-			VMValue lhs = callStack->front();
-			callStack->pop();
-
-			if (lhs.type == VMValueType::VM_INSTRUCTION)
-				lhs = InterpretInstruction(lhs.value.instructValue, callStack);
-
-			VMValue rhs = callStack->front();
-			callStack->pop();
-
-			if (rhs.type == VMValueType::VM_INSTRUCTION)
-				rhs = InterpretInstruction(rhs.value.instructValue, callStack);
-
-			return VMDivide(lhs, rhs);
-		}
-		case VMInstruction::INSTRUCT_LOCATION:
-		{
-			if (callStack->size() == 0)
-				return VMValue();
-
-			VMValue index = callStack->front();
-			callStack->pop();
-
-			if (index.type == VMValueType::VM_INSTRUCTION)
-				index = InterpretInstruction(index.value.instructValue, callStack);
-
-			return GetPlayerLocation(index.value.intValue);
-		}
+		//case VMInstruction::INSTRUCT_MULTIPLY:
+		//{
+		//	if (callStack->size() < 2)
+		//		return VMValue();
+		//
+		//	VMValue lhs = callStack->front();
+		//	callStack->pop();
+		//
+		//	if (lhs.type == VMValueType::VM_INSTRUCTION)
+		//		lhs = InterpretInstruction(lhs.value.instructValue)
+		//
+		//	VMValue rhs = callStack->front();
+		//	callStack->pop();
+		//
+		//	if (rhs.type == VMValueType::VM_INSTRUCTION)
+		//		rhs = InterpretInstruction(rhs.value.instructValue)
+		//
+		//	return VMMultiply(lhs, rhs);
+		//}
+		//case VMInstruction::INSTRUCT_DIVIDE:
+		//{
+		//	if (callStack->size() < 2)
+		//		return VMValue();
+		//
+		//	VMValue lhs = callStack->front();
+		//	callStack->pop();
+		//
+		//	if (lhs.type == VMValueType::VM_INSTRUCTION)
+		//		lhs = InterpretInstruction(lhs.value.instructValue)
+		//
+		//	VMValue rhs = callStack->front();
+		//	callStack->pop();
+		//
+		//	if (rhs.type == VMValueType::VM_INSTRUCTION)
+		//		rhs = InterpretInstruction(rhs.value.instructValue)
+		//
+		//	return VMDivide(lhs, rhs);
+		//}
+		//case VMInstruction::INSTRUCT_LOCATION:
+		//{
+		//	if (callStack->size() == 0)
+		//		return VMValue();
+		//
+		//	VMValue index = callStack->front();
+		//	callStack->pop();
+		//
+		//	if (index.type == VMValueType::VM_INSTRUCTION)
+		//		index = InterpretInstruction(index.value.instructValue);
+		//
+		//	return GetPlayerLocation(index.value.intValue);
+		//}
 		default:
 			return VMValue();
 	}
+}
+
+FString AVirtualMachine::InterpretCalculations()
+{
+	if (instructStack.size() > 0)
+	{
+		callStack.push(instructStack.top());
+		instructStack.pop();
+	}
+
+	VMInstruction instruction = callStack.top().value.instructValue;
+	callStack.pop();
+
+	return FString::SanitizeFloat(InterpretInstruction(instruction).value.intValue);
+}
+
+void AVirtualMachine::PushInt(int value)
+{
+	callStack.push(VMValue(value));
+}
+
+void AVirtualMachine::PushInstruction(VMInstruction instruct)
+{
+	if (instructStack.size() > 0 && GetInstructionWeight(instruct) >= GetInstructionWeight(instructStack.top().value.instructValue))
+	{
+		callStack.push(instructStack.top());
+		instructStack.pop();
+	}
+
+	instructStack.push(VMValue(instruct));
 }
 
 

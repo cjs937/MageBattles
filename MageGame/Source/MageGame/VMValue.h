@@ -66,3 +66,5 @@ struct MAGEGAME_API VMValue
 		VMVector vectorValue;
 	} value;
 };
+
+int GetInstructionWeight(VMInstruction instruct);

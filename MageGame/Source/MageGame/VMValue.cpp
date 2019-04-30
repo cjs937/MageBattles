@@ -51,3 +51,23 @@ VMValue::VMValue(VMVector _value): type(VMValueType::VM_VECTOR)
 
 VMValue::~VMValue()
 {}
+
+int GetInstructionWeight(VMInstruction instruct)
+{
+	switch (instruct)
+	{
+	case VMInstruction::INSTRUCT_ADD:
+	case VMInstruction::INSTRUCT_SUBTRACT:
+	{
+		return 2;
+	}
+
+	case VMInstruction::INSTRUCT_MULTIPLY:
+	case VMInstruction::INSTRUCT_DIVIDE:
+	{
+		return 3;
+	}
+	default:
+		return -1;
+	}
+}

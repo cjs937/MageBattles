@@ -4,6 +4,7 @@
 
 #include "VMValue.h"
 #include <queue>
+#include <stack>
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "VirtualMachine.generated.h"
@@ -16,9 +17,22 @@ class MAGEGAME_API AVirtualMachine : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AVirtualMachine();
-	VMValue InterpretInstruction(VMInstruction instruction, std::queue<VMValue>* callStack);
+	VMValue InterpretInstruction(VMInstruction instruction);//, std::queue<VMValue>* callStack);
+
+	UFUNCTION(BlueprintCallable, Category = "VirtualMachine")
+	FString InterpretCalculations();
+
+	UFUNCTION(BlueprintCallable, Category="VirtualMachine")
+	void PushInt(int value);
+
+	UFUNCTION(BlueprintCallable, Category = "VirtualMachine")
+	void PushInstruction(VMInstruction instruct);
 
 protected:
+	
+	std::stack<VMValue> callStack;
+	std::stack<VMValue> instructStack;
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
