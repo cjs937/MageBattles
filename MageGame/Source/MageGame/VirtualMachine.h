@@ -31,6 +31,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "VirtualMachine")
 	void Clear();
 
+	UFUNCTION(BlueprintCallable, Category = "VirtualMachine")
+	bool IsEmpty();
 protected:
 	
 	std::stack<VMValue> callStack;

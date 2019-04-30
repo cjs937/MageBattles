@@ -147,7 +147,7 @@ VMValue AVirtualMachine::InterpretInstruction(VMInstruction instruction)
 
 FString AVirtualMachine::InterpretCalculations()
 {
-	if (instructStack.size() > 0)
+	while (instructStack.size() > 0)
 	{
 		callStack.push(instructStack.top());
 		instructStack.pop();
@@ -156,7 +156,7 @@ FString AVirtualMachine::InterpretCalculations()
 	VMInstruction instruction = callStack.top().value.instructValue;
 	callStack.pop();
 
-	return FString::SanitizeFloat(InterpretInstruction(instruction).value.intValue);
+	return FString::FromInt(InterpretInstruction(instruction).value.intValue);
 }
 
 void AVirtualMachine::PushInt(int value)
@@ -386,4 +386,9 @@ void AVirtualMachine::Clear()
 {
 	std::stack<VMValue>().swap(callStack);
 	std::stack<VMValue>().swap(instructStack);
+}
+
+bool AVirtualMachine::IsEmpty()
+{
+	return callStack.empty();
 }
